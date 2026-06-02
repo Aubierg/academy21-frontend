@@ -5,7 +5,7 @@ export default function AProposPage() {
     <div style={{ minHeight: '100vh', background: '#f7f8fa' }}>
 
       {/* Header */}
-      <div style={{ background: '#1a1a1a', borderBottom: '3px solid #C8102E', padding: 'clamp(48px,8vw,96px) 0 clamp(32px,5vw,64px)' }}>
+      <div style={{ background: '#1a1a1a', borderBottom: '3px solid #C8102E', padding: '48px 0 32px' }}>
         <div className="container">
           <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', fontSize: '13px', color: '#666', fontFamily: 'Montserrat,sans-serif' }}>
             <Link href="/" style={{ color: '#666' }}>Accueil</Link>

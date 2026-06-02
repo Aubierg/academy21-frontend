@@ -32,7 +32,7 @@ const NAV_ITEMS = [
       { label: 'Mon Programme', href: '/dashboard' },
     ],
   },
-  { label: 'A21 University', href: '/formations' },
+  { label: 'Nos Universités', href: '/formations' },
 ];
 
 export default function Navbar() {
@@ -92,7 +92,7 @@ export default function Navbar() {
               <>
                 <Link href="/login" style={{ color: '#aaa', fontSize: '11px', fontFamily: 'Montserrat,sans-serif', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Connexion</Link>
                 <span style={{ color: '#444' }}>|</span>
-                <Link href="/register" style={{ color: '#C8102E', fontSize: '11px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>S&apos;inscrire</Link>
+                <Link href="/formations/ia-marketing-reseau/inscription" style={{ color: '#C8102E', fontSize: '11px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>S&apos;inscrire</Link>
               </>
             )}
           </div>
@@ -231,7 +231,7 @@ export default function Navbar() {
                 👤 {user.email.split('@')[0]}
               </Link>
             ) : (
-              <Link href="/register" style={{
+              <Link href="/formations/ia-marketing-reseau/inscription" style={{
                 background: '#C8102E', color: 'white',
                 fontFamily: 'Montserrat,sans-serif', fontWeight: 700,
                 fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase',
@@ -323,7 +323,7 @@ export default function Navbar() {
               ) : (
                 <>
                   <Link href="/login" onClick={() => setMobileOpen(false)} style={{ display: 'block', textAlign: 'center', padding: '12px', border: '1.5px solid #e0e2e6', borderRadius: '4px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', color: '#333', textDecoration: 'none' }}>Connexion</Link>
-                  <Link href="/register" onClick={() => setMobileOpen(false)} style={{ display: 'block', textAlign: 'center', padding: '12px', background: '#C8102E', borderRadius: '4px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', color: 'white', textDecoration: 'none' }}>S&apos;inscrire</Link>
+                  <Link href="/formations/ia-marketing-reseau/inscription" onClick={() => setMobileOpen(false)} style={{ display: 'block', textAlign: 'center', padding: '12px', background: '#C8102E', borderRadius: '4px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', color: 'white', textDecoration: 'none' }}>S&apos;inscrire</Link>
                 </>
               )}
             </div>

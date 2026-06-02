@@ -101,56 +101,74 @@ export default function FormationIAPage() {
   return (
     <div style={{ minHeight: '100vh', background: '#f7f8fa' }}>
 
-      {/* HERO */}
+      {/* HERO — fond blanc, compact */}
       <div style={{
-        background: '#1a1a1a',
-        borderBottom: '4px solid #C8102E',
-        padding: 'clamp(48px, 8vw, 96px) 0 clamp(32px, 5vw, 64px)',
-        position: 'relative', overflow: 'hidden',
+        background: 'white',
+        borderBottom: '3px solid #C8102E',
+        padding: '32px 0 28px',
       }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 80% 50%, rgba(200,16,46,0.12) 0%, transparent 60%)' }} />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <Link href="/formations" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: '#888', fontSize: '13px', fontFamily: 'Montserrat,sans-serif', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '24px' }}>
-            ← Retour aux formations
+        <div className="container">
+          <Link href="/formations" style={{
+            display: 'inline-flex', alignItems: 'center', gap: '6px',
+            color: '#888', fontSize: '12px', fontFamily: 'Montserrat,sans-serif',
+            fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '20px',
+          }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Retour aux formations
           </Link>
-          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '20px' }}>
-            <span className="tag tag-red">Formation Professionnelle</span>
-            <span className="tag tag-blue">Distanciel synchrone</span>
-            <span style={{ display: 'inline-block', padding: '4px 12px', borderRadius: '20px', fontSize: '11px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', background: 'rgba(126,200,42,0.15)', color: '#7EC82A', border: '1px solid rgba(126,200,42,0.3)' }}>✓ Éligible CPF</span>
+
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '16px' }}>
+            <span style={{ background: '#C8102E', color: 'white', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '10px', padding: '3px 10px', borderRadius: '3px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Formation Professionnelle</span>
+            <span style={{ background: '#e8f0fb', color: '#1a6fc4', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '10px', padding: '3px 10px', borderRadius: '3px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Distanciel synchrone</span>
+            <span style={{ background: '#edfae5', color: '#28a745', border: '1px solid #c3e6cb', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '10px', padding: '3px 10px', borderRadius: '3px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Éligible CPF</span>
           </div>
-          <h1 style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: 'clamp(26px, 4vw, 52px)', color: 'white', lineHeight: 1.15, marginBottom: '16px', maxWidth: '760px' }}>
+
+          <h1 style={{
+            fontFamily: 'Montserrat,sans-serif', fontWeight: 900,
+            fontSize: 'clamp(24px, 4vw, 44px)', color: '#1a1a1a',
+            lineHeight: 1.15, marginBottom: '14px', maxWidth: '720px',
+          }}>
             Intelligence Artificielle appliquée au{' '}
             <span style={{ color: '#C8102E' }}>Marketing de Réseau</span>
           </h1>
-          <p style={{ color: '#aaa', fontSize: 'clamp(14px, 1.8vw, 16px)', lineHeight: 1.75, maxWidth: '640px', marginBottom: '36px' }}>
+
+          <p style={{ color: '#666', fontSize: '15px', lineHeight: 1.75, maxWidth: '600px', marginBottom: '24px' }}>
             Intégrez de manière structurée les outils d&apos;intelligence artificielle dans votre organisation commerciale afin d&apos;optimiser vos pratiques et professionnaliser votre activité.
           </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '8px', overflow: 'hidden' }}>
+
+          {/* Infos clés — fond gris clair */}
+          <div style={{
+            display: 'flex', flexWrap: 'wrap',
+            background: '#f7f8fa', border: '1px solid #e0e2e6',
+            borderRadius: '8px', overflow: 'hidden',
+          }}>
             {[
-              { icon: '⏱', label: 'Durée', val: '20 heures' },
-              { icon: '📡', label: 'Format', val: 'Distanciel synchrone' },
-              { icon: '📋', label: 'Sessions', val: '5 × 4 heures' },
-              { icon: '👥', label: 'Effectif', val: '12 à 20 participants' },
+              { label: 'Durée', val: '20 heures' },
+              { label: 'Format', val: 'Distanciel synchrone' },
+              { label: 'Sessions', val: '5 × 4 heures' },
+              { label: 'Mode', val: 'Formation individuelle' },
             ].map((info, i) => (
-              <div key={info.label} style={{ flex: '1 1 130px', padding: '18px 20px', borderRight: i < 3 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
-                <div style={{ fontSize: '18px', marginBottom: '6px' }}>{info.icon}</div>
-                <div style={{ fontSize: '10px', color: '#666', textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Montserrat,sans-serif', fontWeight: 600, marginBottom: '4px' }}>{info.label}</div>
-                <div style={{ color: 'white', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '13px' }}>{info.val}</div>
+              <div key={info.label} style={{
+                flex: '1 1 130px', padding: '14px 20px',
+                borderRight: i < 3 ? '1px solid #e0e2e6' : 'none',
+              }}>
+                <div style={{ fontSize: '10px', color: '#aaa', textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Montserrat,sans-serif', fontWeight: 600, marginBottom: '4px' }}>{info.label}</div>
+                <div style={{ color: '#1a1a1a', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '13px' }}>{info.val}</div>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <div className="container" style={{ padding: 'clamp(32px, 5vw, 64px) 24px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: '32px', alignItems: 'start' }} className="formation-grid">
+      <div className="container" style={{ padding: 'clamp(24px, 4vw, 48px) 24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '28px', alignItems: 'start' }} className="formation-grid">
 
           {/* COLONNE GAUCHE */}
           <div>
             {/* Objectifs */}
-            <div style={{ background: 'white', border: '1px solid #e0e2e6', borderTop: '4px solid #C8102E', borderRadius: '8px', padding: 'clamp(20px, 4vw, 36px)', marginBottom: '24px' }}>
-              <h2 style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: 'clamp(18px, 3vw, 24px)', marginBottom: '20px', color: '#1a1a1a' }}>Objectifs pédagogiques</h2>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ background: 'white', border: '1px solid #e0e2e6', borderTop: '4px solid #C8102E', borderRadius: '8px', padding: 'clamp(20px,4vw,32px)', marginBottom: '24px' }}>
+              <h2 style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: 'clamp(16px,2.5vw,22px)', marginBottom: '18px', color: '#1a1a1a' }}>Objectifs pédagogiques</h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {[
                   "Comprendre les principes fondamentaux de l'IA générative et ses applications professionnelles",
                   "Identifier les usages pertinents de l'IA dans une activité de marketing de réseau",
@@ -160,8 +178,10 @@ export default function FormationIAPage() {
                   "Mettre en place des outils de suivi, d'automatisation et de pilotage",
                   "Élaborer un plan de transformation opérationnelle intégrant l'IA",
                 ].map((obj, i) => (
-                  <div key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                    <div style={{ width: '22px', height: '22px', borderRadius: '50%', background: '#C8102E', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', flexShrink: 0, marginTop: '1px' }}>✓</div>
+                  <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                    <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: '#C8102E', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="M5 12l5 5 9-9"/></svg>
+                    </div>
                     <p style={{ color: '#555', fontSize: '14px', lineHeight: 1.65 }}>{obj}</p>
                   </div>
                 ))}
@@ -169,20 +189,20 @@ export default function FormationIAPage() {
             </div>
 
             {/* Modules */}
-            <h2 style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: 'clamp(18px, 3vw, 24px)', marginBottom: '20px', color: '#1a1a1a' }}>Programme détaillé</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px' }}>
+            <h2 style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: 'clamp(16px,2.5vw,22px)', marginBottom: '16px', color: '#1a1a1a' }}>Programme détaillé</h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginBottom: '24px' }}>
               {MODULES.map(mod => (
                 <div key={mod.num} style={{ background: 'white', border: '1px solid #e0e2e6', borderLeft: '4px solid ' + mod.color, borderRadius: '8px', overflow: 'hidden' }}>
-                  <div style={{ padding: '18px 22px', display: 'flex', alignItems: 'center', gap: '14px', borderBottom: '1px solid #f0f1f3' }}>
-                    <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: mod.color, color: 'white', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: '13px' }}>{mod.num}</div>
+                  <div style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', gap: '12px', borderBottom: '1px solid #f0f1f3' }}>
+                    <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: mod.color, color: 'white', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: '12px' }}>{mod.num}</div>
                     <div style={{ flex: 1 }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '10px', flexWrap: 'wrap' }}>
-                        <h3 style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: 'clamp(13px, 2vw, 15px)', color: '#1a1a1a', lineHeight: 1.3 }}>Module {mod.num} — {mod.title}</h3>
-                        <span style={{ background: mod.color + '15', color: mod.color, border: '1px solid ' + mod.color + '35', padding: '3px 10px', borderRadius: '20px', fontSize: '11px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, whiteSpace: 'nowrap' }}>{mod.duration}</span>
+                        <h3 style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: 'clamp(12px,1.8vw,14px)', color: '#1a1a1a', lineHeight: 1.3 }}>Module {mod.num} — {mod.title}</h3>
+                        <span style={{ background: mod.color + '15', color: mod.color, border: '1px solid ' + mod.color + '35', padding: '2px 10px', borderRadius: '20px', fontSize: '11px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, whiteSpace: 'nowrap' }}>{mod.duration}</span>
                       </div>
                     </div>
                   </div>
-                  <div style={{ padding: '16px 22px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="module-grid">
+                  <div style={{ padding: '14px 20px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="module-grid">
                     <div>
                       <div style={{ fontSize: '10px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#aaa', marginBottom: '8px' }}>Compétences visées</div>
                       {mod.competences.map((c, i) => (
@@ -195,13 +215,13 @@ export default function FormationIAPage() {
                       <div style={{ fontSize: '10px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#aaa', marginBottom: '8px' }}>Contenus pédagogiques</div>
                       {mod.contenus.map((c, i) => (
                         <div key={i} style={{ display: 'flex', gap: '6px', marginBottom: '6px', fontSize: '13px', color: '#555', lineHeight: 1.5 }}>
-                          <span style={{ color: '#ddd', flexShrink: 0 }}>•</span> {c}
+                          <span style={{ color: '#ccc', flexShrink: 0 }}>•</span> {c}
                         </div>
                       ))}
                     </div>
                   </div>
-                  <div style={{ padding: '10px 22px', background: '#fafafa', borderTop: '1px solid #f0f1f3', display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                    <span style={{ fontSize: '13px', flexShrink: 0 }}>🔬</span>
+                  <div style={{ padding: '10px 20px', background: '#fafafa', borderTop: '1px solid #f0f1f3', display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={mod.color} strokeWidth="2" style={{ flexShrink: 0, marginTop: '2px' }}><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/></svg>
                     <div>
                       <span style={{ fontSize: '10px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#aaa' }}>TP — </span>
                       <span style={{ fontSize: '13px', color: '#555' }}>{mod.tp}</span>
@@ -212,13 +232,13 @@ export default function FormationIAPage() {
             </div>
 
             {/* Modalités */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }} className="modalites-grid">
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }} className="modalites-grid">
               {[
-                { title: "Modalités pédagogiques", icon: '🎓', items: ["Formation en classe virtuelle synchrone", "Alternance apports théoriques et pratiques", "Études de cas contextualisées", "Exercices individuels et collectifs", "Accompagnement méthodologique"] },
-                { title: "Modalités d'évaluation", icon: '📊', items: ["Évaluations formatives par module", "Exercices pratiques par module", "Étude de cas fil rouge", "Présentation finale d'un plan d'intégration IA"] },
+                { title: "Modalités pédagogiques", items: ["Formation en classe virtuelle synchrone", "Alternance apports théoriques et pratiques", "Études de cas contextualisées", "Exercices individuels et collectifs", "Accompagnement méthodologique"] },
+                { title: "Modalités d'évaluation", items: ["Évaluations formatives par module", "Exercices pratiques par module", "Étude de cas fil rouge", "Présentation finale d'un plan d'intégration IA"] },
               ].map(m => (
-                <div key={m.title} style={{ background: 'white', border: '1px solid #e0e2e6', borderRadius: '8px', padding: '20px' }}>
-                  <h3 style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: '14px', marginBottom: '14px', color: '#1a1a1a' }}>{m.icon} {m.title}</h3>
+                <div key={m.title} style={{ background: 'white', border: '1px solid #e0e2e6', borderRadius: '8px', padding: '18px 20px' }}>
+                  <h3 style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: '13px', marginBottom: '12px', color: '#1a1a1a' }}>{m.title}</h3>
                   {m.items.map((item, i) => (
                     <div key={i} style={{ display: 'flex', gap: '8px', marginBottom: '7px', fontSize: '13px', color: '#666', lineHeight: 1.5 }}>
                       <span style={{ color: '#C8102E', flexShrink: 0 }}>•</span> {item}
@@ -229,53 +249,7 @@ export default function FormationIAPage() {
             </div>
           </div>
 
-          {/* SIDEBAR */}
-          <div style={{ position: 'sticky', top: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <div style={{ background: 'white', border: '1px solid #e0e2e6', borderTop: '4px solid #C8102E', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 24px rgba(0,0,0,0.08)' }}>
-              <div style={{ padding: '24px', borderBottom: '1px solid #f0f1f3', textAlign: 'center' }}>
-                <div style={{ fontSize: '11px', color: '#aaa', textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Montserrat,sans-serif', fontWeight: 600, marginBottom: '8px' }}>Tarif</div>
-                <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: '36px', color: '#C8102E', lineHeight: 1 }}>Sur devis</div>
-                <div style={{ color: '#aaa', fontSize: '12px', marginTop: '6px' }}>Contactez-nous pour un devis personnalisé</div>
-              </div>
-              <div style={{ padding: '16px 20px', borderBottom: '1px solid #f0f1f3' }}>
-                {[
-                  { icon: '⏱', label: 'Durée', val: '20 heures' },
-                  { icon: '📋', label: 'Modules', val: '5 × 4h' },
-                  { icon: '📡', label: 'Modalité', val: 'Distanciel synchrone' },
-                  { icon: '👥', label: 'Groupe', val: '12–20 participants' },
-                  { icon: '🏢', label: 'Organisme', val: 'Academy 21 Paris' },
-                ].map(info => (
-                  <div key={info.label} style={{ display: 'flex', justifyContent: 'space-between', padding: '7px 0', borderBottom: '1px solid #f7f8fa', fontSize: '13px' }}>
-                    <span style={{ color: '#888' }}>{info.icon} {info.label}</span>
-                    <span style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 700, color: '#1a1a1a' }}>{info.val}</span>
-                  </div>
-                ))}
-              </div>
-              <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <Link href="/formations/ia-marketing-reseau/inscription" className="btn btn-primary" style={{ justifyContent: 'center', width: '100%', fontSize: '13px', padding: '14px' }}>
-                  S&apos;inscrire à cette formation →
-                </Link>
-                <a href="mailto:contact@academy21france.fr" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '11px', border: '1.5px solid #e0e2e6', borderRadius: '6px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '12px', color: '#555', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  ✉️ Demander un devis
-                </a>
-              </div>
-              <div style={{ padding: '14px 20px', background: '#fafafa', borderTop: '1px solid #f0f1f3' }}>
-                <div style={{ fontSize: '10px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#aaa', marginBottom: '8px' }}>Inclus</div>
-                {['📄 Support de cours numérique', '🔧 Accès aux outils', '📚 Bibliothèque de ressources', '📋 Templates post-formation'].map(item => (
-                  <div key={item} style={{ fontSize: '12px', color: '#666', marginBottom: '5px' }}>{item}</div>
-                ))}
-              </div>
-            </div>
 
-            <div style={{ background: 'white', border: '1px solid #e0e2e6', borderRadius: '8px', padding: '16px 20px' }}>
-              <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: '13px', color: '#1a1a1a', marginBottom: '10px' }}>📍 Academy Twenty One Paris</div>
-              <div style={{ fontSize: '12px', color: '#aaa', lineHeight: 1.8 }}>
-                7 boulevard Suchet, 75016 Paris<br />
-                SIRET : 924 778 431 400 019<br />
-                Code NAF 85.59a
-              </div>
-            </div>
-          </div>
 
         </div>
       </div>
