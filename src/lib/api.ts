@@ -28,11 +28,11 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
 // AUTH
 export const api = {
   auth: {
-    register: (email: string, password: string) =>
-      request<{ token: string; user: { id: string; email: string; role: string } }>(
-        '/api/auth/register',
-        { method: 'POST', body: JSON.stringify({ email, password }) }
-      ),
+    register: (email: string, password: string, name?: string) =>
+     request<{ token: string; user: { id: string; email: string; role: string } }>(
+       '/api/auth/register',
+       { method: 'POST', body: JSON.stringify({ email, password, name }) }
+    ),
     login: (email: string, password: string) =>
       request<{ token: string; user: { id: string; email: string; role: string } }>(
         '/api/auth/login',

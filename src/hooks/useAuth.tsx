@@ -41,11 +41,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(user);
   };
 
-  const register = async (email: string, password: string) => {
-    const { token, user } = await api.auth.register(email, password);
-    localStorage.setItem('ato_token', token);
-    setUser(user);
-  };
+  const register = async (email: string, password: string, name?: string) => {
+     const { token, user } = await api.auth.register(email, password, name);
+     localStorage.setItem('ato_token', token);
+     setUser(user);
+  }; 
 
   const logout = () => {
     localStorage.removeItem('ato_token');

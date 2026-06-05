@@ -1,12 +1,14 @@
 'use client';
 import Link from 'next/link';
-import Image from "next/image";
+import { useAuth } from '@/hooks/useAuth';
 
 export default function HomePage() {
+  const { user, loading } = useAuth();
+
   return (
     <div>
 
-     {/* ══ HERO ══ */}
+      {/* ══ HERO ══ */}
       <section style={{
         height: '100vh',
         minHeight: '600px',
@@ -50,31 +52,47 @@ export default function HomePage() {
               Academy 21 France vous accompagne vers l&apos;excellence entrepreneuriale avec des formations d&apos;élite, présents sur 5 continents.
             </p>
 
-            {/* 2 boutons uniquement */}
-            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '56px' }}>
-              <Link href="/formations" style={{
-                display: 'inline-flex', alignItems: 'center', gap: '10px',
-                background: '#C8102E', color: 'white',
-                fontFamily: 'Montserrat,sans-serif', fontWeight: 700,
-                fontSize: '13px', letterSpacing: '0.08em', textTransform: 'uppercase',
-                padding: '16px 32px', borderRadius: '4px',
-              }}>
-                Voir les formations
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </Link>
-              <Link href="/register" style={{
-                display: 'inline-flex', alignItems: 'center', gap: '10px',
-                background: 'white', color: '#1a1a1a',
-                fontFamily: 'Montserrat,sans-serif', fontWeight: 700,
-                fontSize: '13px', letterSpacing: '0.08em', textTransform: 'uppercase',
-                padding: '16px 32px', borderRadius: '4px',
-              }}>
-                Rejoindre l&apos;académie
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </Link>
-            </div>
+            {/* Boutons — différents selon connexion */}
+            {!loading && (
+              <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '56px' }}>
+                <Link href="/formations" style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '10px',
+                  background: '#C8102E', color: 'white',
+                  fontFamily: 'Montserrat,sans-serif', fontWeight: 700,
+                  fontSize: '13px', letterSpacing: '0.08em', textTransform: 'uppercase',
+                  padding: '16px 32px', borderRadius: '4px',
+                }}>
+                  Voir les formations
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </Link>
 
-            {/* Stats — ligne horizontale */}
+                {user ? (
+                  <Link href="/dashboard" style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '10px',
+                    background: 'white', color: '#1a1a1a',
+                    fontFamily: 'Montserrat,sans-serif', fontWeight: 700,
+                    fontSize: '13px', letterSpacing: '0.08em', textTransform: 'uppercase',
+                    padding: '16px 32px', borderRadius: '4px',
+                  }}>
+                    Mon espace
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </Link>
+                ) : (
+                  <Link href="/register" style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '10px',
+                    background: 'white', color: '#1a1a1a',
+                    fontFamily: 'Montserrat,sans-serif', fontWeight: 700,
+                    fontSize: '13px', letterSpacing: '0.08em', textTransform: 'uppercase',
+                    padding: '16px 32px', borderRadius: '4px',
+                  }}>
+                    Rejoindre l&apos;académie
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </Link>
+                )}
+              </div>
+            )}
+
+            {/* Stats */}
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(4, auto)',
@@ -126,7 +144,6 @@ export default function HomePage() {
               <div key={p.title} style={{
                 background: 'white', borderRadius: '8px', overflow: 'hidden',
                 border: '1px solid #eceef1', boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-                transition: 'all 0.3s',
               }}>
                 <div style={{ height: '200px', position: 'relative', overflow: 'hidden' }}>
                   <img src={p.img} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -194,16 +211,29 @@ export default function HomePage() {
             Rejoignez des milliers d&apos;entrepreneurs qui transforment leur avenir avec Academy 21 France.
           </p>
           <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/register" style={{
-              display: 'inline-flex', alignItems: 'center', gap: '10px',
-              background: 'white', color: '#C8102E',
-              fontFamily: 'Montserrat,sans-serif', fontWeight: 800,
-              fontSize: '13px', letterSpacing: '0.08em', textTransform: 'uppercase',
-              padding: '16px 36px', borderRadius: '4px',
-            }}>
-              Créer mon compte
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </Link>
+            {user ? (
+              <Link href="/dashboard" style={{
+                display: 'inline-flex', alignItems: 'center', gap: '10px',
+                background: 'white', color: '#C8102E',
+                fontFamily: 'Montserrat,sans-serif', fontWeight: 800,
+                fontSize: '13px', letterSpacing: '0.08em', textTransform: 'uppercase',
+                padding: '16px 36px', borderRadius: '4px',
+              }}>
+                Mon espace membre
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </Link>
+            ) : (
+              <Link href="/register" style={{
+                display: 'inline-flex', alignItems: 'center', gap: '10px',
+                background: 'white', color: '#C8102E',
+                fontFamily: 'Montserrat,sans-serif', fontWeight: 800,
+                fontSize: '13px', letterSpacing: '0.08em', textTransform: 'uppercase',
+                padding: '16px 36px', borderRadius: '4px',
+              }}>
+                Créer mon compte
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </Link>
+            )}
             <Link href="/evenements" style={{
               display: 'inline-flex', alignItems: 'center', gap: '10px',
               background: 'transparent', color: 'white',
