@@ -14,12 +14,11 @@ const nextConfig = {
         protocol: 'http',
         hostname: '**',
       },
-      {
-        protocol: 'https',
-        hostname: 'via.placeholder.com',
-      },
     ],
   },
+
+  // Autoriser l'accès depuis ton réseau local (pour tester sur téléphone)
+  allowedDevOrigins: ['192.168.1.24'],
 };
 
 module.exports = nextConfig;
