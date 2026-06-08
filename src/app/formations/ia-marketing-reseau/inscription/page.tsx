@@ -42,7 +42,7 @@ export default function InscriptionPage() {
       // pour les récupérer sur la page de succès
       sessionStorage.setItem('inscription_data', JSON.stringify(form));
 
-      const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
       const token = localStorage.getItem('ato_token');
 
       if (method === 'stripe') {
