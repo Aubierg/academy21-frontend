@@ -247,8 +247,8 @@ export default function InscriptionPage() {
                   disabled={loading}
                   style={{ display: 'flex', alignItems: 'center', gap: '14px', padding: '18px 20px', background: 'white', border: '2px solid #C8102E', borderRadius: '8px', cursor: loading ? 'not-allowed' : 'pointer', width: '100%', transition: 'background 0.2s' }}
                 >
-                  <div style={{ width: '44px', height: '44px', background: '#C8102E', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <span style={{ fontSize: '20px' }}>💳</span>
+                  <div style={{ width: '44px', height: '44px', background: 'white', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <img src="/stripe.png" alt="Stripe" style={{ width: '24px', height: '24px', objectFit: 'contain' }} />
                   </div>
                   <div style={{ textAlign: 'left' }}>
                     <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: '15px', color: '#1a1a1a' }}>Payer par carte bancaire</div>
@@ -262,8 +262,8 @@ export default function InscriptionPage() {
                   disabled={loading}
                   style={{ display: 'flex', alignItems: 'center', gap: '14px', padding: '18px 20px', background: 'white', border: '2px solid #e0e2e6', borderRadius: '8px', cursor: loading ? 'not-allowed' : 'pointer', width: '100%', transition: 'all 0.2s' }}
                 >
-                  <div style={{ width: '44px', height: '44px', background: '#f0a500', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <span style={{ fontSize: '20px' }}>🅿️</span>
+                  <div style={{ width: '44px', height: '44px', background: 'white', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <img src="/paypal.png" alt="PayPal" style={{ width: '24px', height: '24px', objectFit: 'contain' }} />
                   </div>
                   <div style={{ textAlign: 'left' }}>
                     <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: '15px', color: '#1a1a1a' }}>Payer via PayPal</div>
