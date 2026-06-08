@@ -1,14 +1,17 @@
 'use client';
-import { useState, useEffect } from 'react';
+
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
 
-export default function LoginPage() {
+// Composant interne qui utilise useSearchParams
+function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
   const { login, user, loading: authLoading } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -35,11 +38,10 @@ export default function LoginPage() {
     }
   };
 
-  if (authLoading) return null;
+  if (authLoading) return <div>Chargement...</div>;
 
   return (
     <div style={{ minHeight: '100vh', paddingTop: '68px', display: 'flex', background: '#f7f8fa' }}>
-
       {/* Panneau gauche rouge */}
       <div style={{ width: '420px', flexShrink: 0, background: '#C8102E', padding: '80px 60px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }} className="auth-panel">
         <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: '36px', color: 'white', marginBottom: '24px', lineHeight: 1 }}>ACADEMY<br />21</div>
@@ -61,7 +63,6 @@ export default function LoginPage() {
             Bienvenue ! Connectez-vous à votre espace membre.
           </p>
 
-          {/* Message si redirigé depuis une page protégée */}
           {searchParams.get('redirect') && (
             <div style={{ background: '#fff8e1', border: '1px solid #ffe082', borderRadius: '6px', padding: '12px 16px', marginBottom: '20px', fontSize: '13px', color: '#856404' }}>
               Connectez-vous pour accéder à cette page.
@@ -101,21 +102,15 @@ export default function LoginPage() {
               className="btn btn-primary"
               style={{ width: '100%', justifyContent: 'center', fontSize: '14px', padding: '15px' }}
             >
-              {loading ? (
-                <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ width: '16px', height: '16px', border: '2px solid rgba(255,255,255,0.3)', borderTopColor: 'white', borderRadius: '50%', display: 'inline-block', animation: 'spin 0.6s linear infinite' }} />
-                  Connexion...
-                </span>
-              ) : 'Se connecter'}
+              {loading ? 'Connexion...' : 'Se connecter'}
             </button>
           </form>
 
           <div className="divider" />
-
           <p style={{ textAlign: 'center', color: '#999', fontSize: '14px' }}>
             Pas encore de compte ?{' '}
             <Link href="/register" style={{ color: '#C8102E', fontWeight: 700 }}>
-              S&apos;inscrire gratuitement
+              S'inscrire gratuitement
             </Link>
           </p>
         </div>
@@ -126,5 +121,14 @@ export default function LoginPage() {
         @media (max-width: 768px) { .auth-panel { display: none !important; } }
       `}</style>
     </div>
+  );
+}
+
+// Page principale avec Suspense
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Chargement de la page...</div>}>
+      <LoginForm />
+    </Suspense>
   );
 }
