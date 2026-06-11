@@ -15,7 +15,7 @@ export default function RegisterPage() {
 
   useEffect(() => {
     if (!authLoading && user) {
-      router.push('/formations');
+      router.push('/login?registered=1');
     }
   }, [user, authLoading, router]);
 
@@ -33,9 +33,9 @@ export default function RegisterPage() {
     setLoading(true);
     try {
       await register(email, password);
-      router.push('/formations');
+      router.push('/login?registered=1');
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Erreur lors de l'inscription");
+      const msg = err instanceof Error ? err.message : "Erreur lors de l'inscription"; if (msg.includes('déjà utilisé')) { setError('__ALREADY_EXISTS__'); } else { setError(msg); };
     } finally {
       setLoading(false);
     }
@@ -82,7 +82,15 @@ export default function RegisterPage() {
             Gratuit et sans engagement.
           </p>
 
-          {error && <div className="error-msg">{error}</div>}
+          {error {error && <div className="error-msg">{error}</div>}{error && <div className="error-msg">{error}</div>} (
+  error === '__ALREADY_EXISTS__' ? (
+    <div style={{ background: '#fff8e1', border: '1px solid #ffe082', borderLeft: '4px solid #f0a500', borderRadius: '8px', padding: '14px 16px', marginBottom: '20px', fontSize: '13px', color: '#856404' }}>
+      ⚠️ Un compte existe déjà avec cet email. <a href="/login" style={{ color: '#C8102E', fontWeight: 700 }}>Se connecter →</a>
+    </div>
+  ) : (
+    <div className="error-msg">{error}</div>
+  )
+)}
 
           <form onSubmit={handleSubmit}>
             <div className="form-group">
