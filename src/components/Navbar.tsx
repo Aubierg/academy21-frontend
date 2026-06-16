@@ -6,29 +6,29 @@ import { useAuth } from '@/hooks/useAuth';
 
 const NAV_ITEMS = [
   { label: 'Accueil', href: '/' },
- {
-  label: 'À Propos',
-  children: [
-    { label: 'Qui Sommes-Nous ?', href: '/a-propos' },
-    { label: 'Nos Valeurs', href: '/nos-valeurs' },
-    { label: 'Nos Programmes', href: '/formations' },
-    { label: 'Le Fondateur', href: '/fondateur' },
-  ],
-},
+  {
+    label: 'À Propos',
+    children: [
+      { label: 'Qui Sommes-Nous ?', href: '/a-propos' },
+      { label: 'Nos Valeurs', href: '/nos-valeurs' },
+      { label: 'Le Fondateur', href: '/fondateur' },
+    ],
+  },
   {
     label: 'Activités',
     children: [
       { label: 'Nos Formations', href: '/formations' },
       { label: 'Événements à Venir', href: '/evenements' },
-      { label: 'Business Show', href: '/evenements' },
-      { label: 'LeaderCamp', href: '/evenements' },
+      { label: 'Business Show', href: '/rejoindre-academie/business-show' },
+      { label: 'LeaderCamp', href: '/rejoindre-academie/leadercamp' },
+      { label: 'A21 Training', href: '/rejoindre-academie/a21-training' },
     ],
   },
   {
     label: 'Communauté',
     children: [
-      { label: 'Ambassadeurs', href: '/dashboard' },
-      { label: 'Témoignages', href: '/dashboard' },
+      { label: 'Témoignages', href: '/temoignages' },
+      { label: "Rejoindre l'Académie", href: '/rejoindre-academie' },
       { label: 'Mon Programme', href: '/dashboard' },
     ],
   },
@@ -65,9 +65,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* ══════════════════════════════════
-          BARRE INFO
-      ══════════════════════════════════ */}
+      {/* BARRE INFO */}
       <div style={{ background: '#1a1a1a', borderBottom: '1px solid #2a2a2a', padding: '7px 0' }} className="info-bar">
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
           <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
@@ -92,16 +90,14 @@ export default function Navbar() {
               <>
                 <Link href="/login" style={{ color: '#aaa', fontSize: '11px', fontFamily: 'Montserrat,sans-serif', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Connexion</Link>
                 <span style={{ color: '#444' }}>|</span>
-                <Link href="/formations/ia-marketing-reseau/inscription" style={{ color: '#C8102E', fontSize: '11px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>S&apos;inscrire</Link>
+                <Link href="/rejoindre-academie" style={{ color: '#C8102E', fontSize: '11px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Rejoindre l&apos;Académie</Link>
               </>
             )}
           </div>
         </div>
       </div>
 
-      {/* ══════════════════════════════════
-          NAVBAR PRINCIPALE
-      ══════════════════════════════════ */}
+      {/* NAVBAR PRINCIPALE */}
       <nav ref={navRef} style={{
         position: 'sticky', top: 0, zIndex: 100,
         background: 'white',
@@ -112,18 +108,16 @@ export default function Navbar() {
 
         <div className="container" style={{ display: 'flex', alignItems: 'center', height: '72px', gap: '0' }}>
 
-          {/* LOGO */}
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0, marginRight: '32px', textDecoration: 'none' }}>
-            <LogoMark />
-            <div style={{ lineHeight: 1.15 }}>
-              <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: '16px', color: '#1a1a1a' }}>
-                <span style={{ color: '#C8102E' }}>ACADEMY</span> 21
-              </div>
-              <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 500, fontSize: '9px', letterSpacing: '0.25em', color: '#bbb', textTransform: 'uppercase' }}>France</div>
-            </div>
+          {/* LOGO OFFICIEL */}
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', flexShrink: 0, marginRight: '32px', textDecoration: 'none' }}>
+            <img
+              src="/logo-a21-france.png"
+              alt="Academy 21 France"
+              style={{ height: '56px', width: 'auto' }}
+            />
           </Link>
 
-          {/* LIENS DESKTOP avec dropdowns */}
+          {/* LIENS DESKTOP */}
           <div style={{ display: 'flex', alignItems: 'stretch', flex: 1, height: '72px' }} className="desktop-nav">
             {NAV_ITEMS.map(item => (
               <div key={item.label} style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
@@ -133,38 +127,27 @@ export default function Navbar() {
                       onClick={() => setOpenDropdown(openDropdown === item.label ? null : item.label)}
                       style={{
                         display: 'flex', alignItems: 'center', gap: '4px',
-                        height: '72px', padding: '0 16px',
+                        height: '72px', padding: '0 14px',
                         background: 'none', border: 'none', cursor: 'pointer',
                         fontFamily: 'Montserrat,sans-serif', fontWeight: 700,
                         fontSize: '12px', letterSpacing: '0.08em', textTransform: 'uppercase',
                         color: openDropdown === item.label ? '#C8102E' : '#333',
                         borderBottom: openDropdown === item.label ? '3px solid #C8102E' : '3px solid transparent',
-                        transition: 'all 0.15s',
-                        whiteSpace: 'nowrap',
+                        transition: 'all 0.15s', whiteSpace: 'nowrap',
                       }}
                     >
                       {item.label}
-                      <span style={{
-                        fontSize: '9px',
-                        transform: openDropdown === item.label ? 'rotate(180deg)' : 'rotate(0)',
-                        transition: 'transform 0.2s',
-                        marginTop: '1px',
-                        opacity: 0.6,
-                      }}>▼</span>
+                      <span style={{ fontSize: '9px', transform: openDropdown === item.label ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s', marginTop: '1px', opacity: 0.6 }}>▼</span>
                     </button>
 
-                    {/* DROPDOWN */}
                     {openDropdown === item.label && (
                       <div style={{
                         position: 'absolute', top: '72px', left: 0,
-                        background: 'white',
-                        border: '1px solid #e0e2e6',
+                        background: 'white', border: '1px solid #e0e2e6',
                         borderTop: '3px solid #C8102E',
                         boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
-                        minWidth: '220px',
-                        zIndex: 200,
-                        borderRadius: '0 0 6px 6px',
-                        overflow: 'hidden',
+                        minWidth: '220px', zIndex: 200,
+                        borderRadius: '0 0 6px 6px', overflow: 'hidden',
                       }}>
                         {item.children.map((child, ci) => (
                           <Link
@@ -172,27 +155,15 @@ export default function Navbar() {
                             href={child.href}
                             onClick={() => setOpenDropdown(null)}
                             style={{
-                              display: 'block',
-                              padding: '12px 20px',
-                              fontFamily: 'Montserrat,sans-serif',
-                              fontWeight: 600, fontSize: '12px',
-                              letterSpacing: '0.06em', textTransform: 'uppercase',
+                              display: 'block', padding: '12px 20px',
+                              fontFamily: 'Montserrat,sans-serif', fontWeight: 600,
+                              fontSize: '12px', letterSpacing: '0.06em', textTransform: 'uppercase',
                               color: '#333',
                               borderBottom: ci < item.children!.length - 1 ? '1px solid #f0f1f3' : 'none',
-                              transition: 'all 0.15s',
-                              background: 'white',
-                              textDecoration: 'none',
+                              transition: 'all 0.15s', background: 'white', textDecoration: 'none',
                             }}
-                            onMouseEnter={e => {
-                              e.currentTarget.style.background = '#fff5f5';
-                              e.currentTarget.style.color = '#C8102E';
-                              e.currentTarget.style.paddingLeft = '24px';
-                            }}
-                            onMouseLeave={e => {
-                              e.currentTarget.style.background = 'white';
-                              e.currentTarget.style.color = '#333';
-                              e.currentTarget.style.paddingLeft = '20px';
-                            }}
+                            onMouseEnter={e => { e.currentTarget.style.background = '#fff5f5'; e.currentTarget.style.color = '#C8102E'; e.currentTarget.style.paddingLeft = '24px'; }}
+                            onMouseLeave={e => { e.currentTarget.style.background = 'white'; e.currentTarget.style.color = '#333'; e.currentTarget.style.paddingLeft = '20px'; }}
                           >
                             {child.label}
                           </Link>
@@ -203,7 +174,7 @@ export default function Navbar() {
                 ) : (
                   <Link href={item.href!} style={{
                     display: 'flex', alignItems: 'center',
-                    height: '72px', padding: '0 16px',
+                    height: '72px', padding: '0 14px',
                     fontFamily: 'Montserrat,sans-serif', fontWeight: 700,
                     fontSize: '12px', letterSpacing: '0.08em', textTransform: 'uppercase',
                     color: pathname === item.href ? '#C8102E' : '#333',
@@ -231,14 +202,14 @@ export default function Navbar() {
                 👤 {user.email.split('@')[0]}
               </Link>
             ) : (
-              <Link href="/formations/ia-marketing-reseau/inscription" style={{
+              <Link href="/rejoindre-academie" style={{
                 background: '#C8102E', color: 'white',
                 fontFamily: 'Montserrat,sans-serif', fontWeight: 700,
                 fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase',
-                padding: '11px 28px', borderRadius: '4px',
+                padding: '11px 24px', borderRadius: '4px',
                 display: 'inline-block', textDecoration: 'none',
               }}>
-                S&apos;inscrire
+                Rejoindre l&apos;Académie
               </Link>
             )}
           </div>
@@ -290,8 +261,7 @@ export default function Navbar() {
                             display: 'block', padding: '11px 24px 11px 36px',
                             fontFamily: 'Montserrat,sans-serif', fontWeight: 600,
                             fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.06em',
-                            color: '#555', borderBottom: '1px solid #f0f1f3',
-                            textDecoration: 'none',
+                            color: '#555', borderBottom: '1px solid #f0f1f3', textDecoration: 'none',
                           }}>
                             — {child.label}
                           </Link>
@@ -323,7 +293,7 @@ export default function Navbar() {
               ) : (
                 <>
                   <Link href="/login" onClick={() => setMobileOpen(false)} style={{ display: 'block', textAlign: 'center', padding: '12px', border: '1.5px solid #e0e2e6', borderRadius: '4px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', color: '#333', textDecoration: 'none' }}>Connexion</Link>
-                  <Link href="/formations/ia-marketing-reseau/inscription" onClick={() => setMobileOpen(false)} style={{ display: 'block', textAlign: 'center', padding: '12px', background: '#C8102E', borderRadius: '4px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', color: 'white', textDecoration: 'none' }}>S&apos;inscrire</Link>
+                  <Link href="/rejoindre-academie" onClick={() => setMobileOpen(false)} style={{ display: 'block', textAlign: 'center', padding: '12px', background: '#C8102E', borderRadius: '4px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', color: 'white', textDecoration: 'none' }}>Rejoindre l&apos;Académie</Link>
                 </>
               )}
             </div>
@@ -341,18 +311,5 @@ export default function Navbar() {
         }
       `}</style>
     </>
-  );
-}
-
-function LogoMark() {
-  return (
-    <div style={{ width: 44, height: 44, flexShrink: 0 }}>
-      <svg viewBox="0 0 100 100" style={{ width: '100%', height: '100%' }}>
-        <circle cx="50" cy="50" r="44" fill="none" stroke="#C8102E" strokeWidth="9" strokeDasharray="195 85" strokeLinecap="round" transform="rotate(-30 50 50)" />
-        <circle cx="50" cy="50" r="32" fill="none" stroke="#f0a500" strokeWidth="6" strokeDasharray="138 62" strokeLinecap="round" transform="rotate(150 50 50)" />
-        <text x="47" y="59" textAnchor="middle" style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: '29px', fill: '#1a6fc4' }}>2</text>
-        <text x="63" y="53" textAnchor="middle" style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: '25px', fill: '#5cb85c' }}>1</text>
-      </svg>
-    </div>
   );
 }
