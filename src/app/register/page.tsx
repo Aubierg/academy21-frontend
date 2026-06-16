@@ -82,7 +82,7 @@ export default function RegisterPage() {
             Gratuit et sans engagement.
           </p>
 
-          {error {error && <div className="error-msg">{error}</div>}{error && <div className="error-msg">{error}</div>} (
+          {error && (
   error === '__ALREADY_EXISTS__' ? (
     <div style={{ background: '#fff8e1', border: '1px solid #ffe082', borderLeft: '4px solid #f0a500', borderRadius: '8px', padding: '14px 16px', marginBottom: '20px', fontSize: '13px', color: '#856404' }}>
       ⚠️ Un compte existe déjà avec cet email. <a href="/login" style={{ color: '#C8102E', fontWeight: 700 }}>Se connecter →</a>
