@@ -106,20 +106,11 @@ export default function FormationsPage() {
               </div>
 
               {/* Badges */}
-              <div style={{ position: 'absolute', top: '14px', right: '14px', display: 'flex', gap: '6px' }}>
-                <span style={{ background: '#C8102E', color: 'white', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '10px', padding: '3px 10px', borderRadius: '3px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Formation Pro</span>
-                <span style={{ background: 'rgba(126,200,42,0.2)', color: '#7EC82A', border: '1px solid rgba(126,200,42,0.4)', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '10px', padding: '3px 10px', borderRadius: '3px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>CPF</span>
-              </div>
-
-              {/* Prix */}
-              <div style={{ position: 'absolute', bottom: '14px', left: '18px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <span style={{ background: 'white', color: '#C8102E', fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: '13px', padding: '4px 12px', borderRadius: '4px' }}>490 €</span>
-                <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '12px', fontFamily: 'Montserrat,sans-serif' }}>20 heures · Distanciel</span>
-              </div>
+              
             </div>
 
-            {/* Contenu */}
-            <div style={{ padding: 'clamp(16px,3vw,28px)', display: 'flex', gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+            {/* Contenu texte + boutons */}
+            <div style={{ padding: 'clamp(20px,3vw,28px)', display: 'flex', justifyContent: 'space-between', gap: '20px', flexWrap: 'wrap' }}>
               <div style={{ flex: 1, minWidth: '240px' }}>
                 <h3 style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: 'clamp(16px,2.5vw,20px)', marginBottom: '10px', color: '#1a1a1a', lineHeight: 1.3 }}>
                   IA appliquée au Marketing de Réseau
@@ -127,11 +118,6 @@ export default function FormationsPage() {
                 <p style={{ color: '#777', fontSize: '14px', lineHeight: 1.7, marginBottom: '16px' }}>
                   Intégrez l&apos;intelligence artificielle dans votre activité commerciale. 5 modules pratiques pour maîtriser la prospection, le contenu, la conversion et l&apos;automatisation.
                 </p>
-                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                  {['5 modules', '20h', 'Distanciel', '12-20 pers.'].map(tag => (
-                    <span key={tag} style={{ background: '#f0f1f3', color: '#555', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '11px', padding: '4px 10px', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{tag}</span>
-                  ))}
-                </div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', flexShrink: 0, minWidth: '180px' }}>
                 <Link href="/formations/ia-marketing-reseau" style={{

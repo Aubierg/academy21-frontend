@@ -6,8 +6,8 @@ const TRANSLATIONS = {
   fr: {
     back: '← Retour à l\'accueil',
     tag: 'Candidature',
-    title: 'Rejoindre l\'Académie',
-    subtitle: 'Découvrez nos programmes et rejoignez un réseau international d\'entrepreneurs présents sur 5 continents.',
+    title: 'Bienvenue à l\'Académie',
+    subtitle: '',
     discover: 'Découvrir →',
     cta: 'Prêt à rejoindre l\'Académie ?',
     ctaDesc: 'Soumettez votre candidature. Notre équipe vous contactera dans les 48h.',
@@ -16,8 +16,8 @@ const TRANSLATIONS = {
   en: {
     back: '← Back to home',
     tag: 'Application',
-    title: 'Join the Academy',
-    subtitle: 'Discover our programs and join an international network of entrepreneurs on 5 continents.',
+    title: 'Welcome to the Academy',
+    subtitle: '',
     discover: 'Discover →',
     cta: 'Ready to join the Academy?',
     ctaDesc: 'Submit your application. Our team will contact you within 48h.',
@@ -120,9 +120,8 @@ export default function RejoindreAcademiePage() {
           <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '15px', lineHeight: 1.75, maxWidth: '440px', margin: '0 auto 28px' }}>
             {t.ctaDesc}
           </p>
-          <Link href="/candidature" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: '#C8102E', color: 'white', fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: '14px', textTransform: 'uppercase', letterSpacing: '0.06em', padding: '16px 36px', borderRadius: '8px', textDecoration: 'none' }}>
-            {t.postuler}
-          </Link>
+          <Link href="/candidature" style={{ display: "inline-flex", alignItems: "center", gap: "10px", background: "#C8102E", color: "white", fontFamily: "Montserrat,sans-serif", fontWeight: 800, fontSize: "14px", textTransform: "uppercase", padding: "16px 36px", borderRadius: "8px", textDecoration: "none", marginTop: "8px" }}>{t.postuler}</Link>
+
         </div>
       </div>
     </div>

@@ -270,7 +270,7 @@ export default function DashboardPage() {
             <div style={{ width: '60px', height: '3px', background: '#C8102E', margin: '0 auto 24px' }} />
             <p style={{ color: '#888', fontSize: '15px', marginBottom: '8px' }}>Ce certificat atteste que</p>
             <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: 'clamp(20px,3vw,28px)', color: '#C8102E', marginBottom: '8px' }}>
-              {user.email.split('@')[0]}
+              {user.email === 'ndjiyaaubierge@gmail.com' ? 'Ndjiya Aubierge' : user.email.split('@')[0]}
             </div>
             <p style={{ color: '#888', fontSize: '15px', marginBottom: '24px' }}>a complété avec succès la formation</p>
             <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: 'clamp(15px,2.5vw,20px)', color: '#1a1a1a', background: '#f7f8fa', border: '1px solid #e0e2e6', borderRadius: '8px', padding: '16px 24px', marginBottom: '32px' }}>
@@ -317,10 +317,10 @@ export default function DashboardPage() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
             <div>
               <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: 'clamp(20px,3vw,28px)', color: '#1a1a1a' }}>
-                Bonjour, <span style={{ color: '#C8102E' }}>{user.email.split('@')[0]}</span> 👋
+                Bonjour, <span style={{ color: '#C8102E' }}>{user.email === 'ndjiyaaubierge@gmail.com' ? 'Ndjiya Aubierge' : user.email.split('@')[0]}</span>
               </div>
               <div style={{ fontSize: '13px', color: '#aaa', marginTop: '4px' }}>
-                {user.email} · {user.role === 'admin' ? '🔑 Admin' : '✅ Membre actif'}
+                {user.email} · Membre actif
               </div>
             </div>
             <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>

@@ -2,18 +2,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-const DIPLOMES = [
-  'Aucun diplôme',
-  'Brevet des collèges (BEPC)',
-  'CAP / BEP',
-  'Baccalauréat',
-  'BTS / DUT / BUT',
-  'Licence / Bachelor',
-  'Master / MBA',
-  'Doctorat / PhD',
-  'Autre',
-];
-
 export default function CandidaturePage() {
   const [step, setStep] = useState<1 | 2>(1);
   const [loading, setLoading] = useState(false);
@@ -24,23 +12,19 @@ export default function CandidaturePage() {
     nom: '',
     email: '',
     telephone: '',
-    diplome: '',
+    nationalite: '',
+    residence: '',
     motivation: '',
-    cv: null as File | null,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.[0]) setForm(prev => ({ ...prev, cv: e.target.files![0] }));
-  };
-
   const handleNext = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    if (!form.prenom || !form.nom || !form.email || !form.telephone || !form.diplome) {
+    if (!form.prenom || !form.nom || !form.email || !form.telephone || !form.nationalite || !form.residence) {
       setError('Veuillez remplir tous les champs obligatoires.');
       return;
     }
@@ -52,21 +36,23 @@ export default function CandidaturePage() {
     e.preventDefault();
     setError('');
     if (!form.motivation) { setError('Veuillez écrire une lettre de motivation.'); return; }
+    if (form.motivation.length > 500) { setError('La lettre de motivation ne doit pas dépasser 500 caractères.'); return; }
     setLoading(true);
     try {
       const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
-      const formData = new FormData();
-      formData.append('prenom', form.prenom);
-      formData.append('nom', form.nom);
-      formData.append('email', form.email);
-      formData.append('telephone', form.telephone);
-      formData.append('diplome', form.diplome);
-      formData.append('motivation', form.motivation);
-      if (form.cv) formData.append('cv', form.cv);
 
       const res = await fetch(`${BASE_URL}/api/candidatures`, {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prenom: form.prenom,
+          nom: form.nom,
+          email: form.email,
+          telephone: form.telephone,
+          nationalite: form.nationalite,
+          residence: form.residence,
+          motivation: form.motivation,
+        }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Erreur envoi');
@@ -135,7 +121,7 @@ export default function CandidaturePage() {
 
         {/* Stepper */}
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '36px', maxWidth: '360px' }}>
-          {[{ num: 1, label: 'Vos informations' }, { num: 2, label: 'Motivation & CV' }].map((s, i) => (
+          {[{ num: 1, label: 'Vos informations' }, { num: 2, label: 'Motivation' }].map((s, i) => (
             <div key={s.num} style={{ display: 'flex', alignItems: 'center', flex: i < 1 ? 1 : 'none' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px' }}>
                 <div style={{ width: '34px', height: '34px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: '13px', background: step >= s.num ? '#C8102E' : '#e0e2e6', color: step >= s.num ? 'white' : '#aaa' }}>
@@ -176,15 +162,16 @@ export default function CandidaturePage() {
                   <label className="form-label">Téléphone *</label>
                   <input type="tel" name="telephone" className="form-input" placeholder="+33 6 XX XX XX XX" value={form.telephone} onChange={handleChange} required />
                 </div>
+                <div className="form-group">
+                  <label className="form-label">Nationalité *</label>
+                  <input name="nationalite" className="form-input" placeholder="Ex: Française, Camerounaise..." value={form.nationalite} onChange={handleChange} required />
+                </div>
                 <div className="form-group" style={{ marginBottom: '28px' }}>
-                  <label className="form-label">Dernier diplôme obtenu *</label>
-                  <select name="diplome" className="form-input" value={form.diplome} onChange={handleChange} required style={{ cursor: 'pointer' }}>
-                    <option value="">-- Sélectionnez votre diplôme --</option>
-                    {DIPLOMES.map(d => <option key={d} value={d}>{d}</option>)}
-                  </select>
+                  <label className="form-label">Lieu de résidence *</label>
+                  <input name="residence" className="form-input" placeholder="Ex: Paris, France" value={form.residence} onChange={handleChange} required />
                 </div>
                 <button type="submit" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', fontSize: '14px', padding: '15px' }}>
-                  Continuer → Motivation & CV
+                  Continuer → Motivation
                 </button>
               </form>
             </div>
@@ -195,7 +182,7 @@ export default function CandidaturePage() {
             <div style={{ background: 'white', border: '1px solid #e0e2e6', borderTop: '4px solid #C8102E', borderRadius: '8px', padding: 'clamp(20px,4vw,36px)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
                 <h2 style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: '20px', color: '#1a1a1a' }}>
-                  Motivation & CV
+                  Motivation
                 </h2>
                 <button onClick={() => setStep(1)} style={{ background: 'none', border: 'none', color: '#C8102E', fontSize: '12px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline' }}>
                   ← Modifier mes infos
@@ -206,7 +193,7 @@ export default function CandidaturePage() {
               <div style={{ background: '#f7f8fa', border: '1px solid #e0e2e6', borderRadius: '8px', padding: '14px 18px', marginBottom: '24px' }}>
                 <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: '14px', color: '#1a1a1a' }}>{form.prenom} {form.nom}</div>
                 <div style={{ fontSize: '13px', color: '#888', marginTop: '2px' }}>{form.email} · {form.telephone}</div>
-                <div style={{ fontSize: '13px', color: '#888' }}>🎓 {form.diplome}</div>
+                <div style={{ fontSize: '13px', color: '#888' }}> {form.nationalite} · {form.residence}</div>
               </div>
 
               {error && <div style={{ background: '#fff5f5', border: '1px solid rgba(200,16,46,0.3)', borderLeft: '4px solid #C8102E', borderRadius: '6px', padding: '12px 16px', marginBottom: '20px', fontSize: '13px', color: '#C8102E' }}>{error}</div>}
@@ -217,35 +204,20 @@ export default function CandidaturePage() {
                   <textarea
                     name="motivation"
                     className="form-input"
-                    placeholder="Expliquez pourquoi vous souhaitez rejoindre Academy 21, vos objectifs, votre parcours..."
+                    placeholder="Expliquez pourquoi vous souhaitez rejoindre Academy 21, vos objectifs, votre parcours... (500 caractères max)"
                     value={form.motivation}
                     onChange={handleChange}
                     rows={8}
+                    maxLength={500}
                     style={{ resize: 'vertical' }}
                     required
                   />
-                </div>
-
-                <div className="form-group" style={{ marginBottom: '28px' }}>
-                  <label className="form-label">CV (PDF, Word) — optionnel</label>
-                  <div style={{ border: '2px dashed #e0e2e6', borderRadius: '8px', padding: '24px', textAlign: 'center', cursor: 'pointer', position: 'relative' }}
-                    onClick={() => document.getElementById('cv-input')?.click()}>
-                    <input id="cv-input" type="file" accept=".pdf,.doc,.docx" onChange={handleFile} style={{ display: 'none' }} />
-                    {form.cv ? (
-                      <div>
-                        <div style={{ fontSize: '24px', marginBottom: '8px' }}>📄</div>
-                        <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '13px', color: '#28a745' }}>{form.cv.name}</div>
-                        <div style={{ fontSize: '11px', color: '#aaa', marginTop: '4px' }}>Cliquez pour changer</div>
-                      </div>
-                    ) : (
-                      <div>
-                        <div style={{ fontSize: '32px', marginBottom: '8px' }}>📎</div>
-                        <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '13px', color: '#555' }}>Cliquez pour uploader votre CV</div>
-                        <div style={{ fontSize: '11px', color: '#aaa', marginTop: '4px' }}>PDF, DOC, DOCX — max 5MB</div>
-                      </div>
-                    )}
+                  <div style={{ fontSize: '12px', color: form.motivation.length > 450 ? '#C8102E' : '#aaa', textAlign: 'right', marginTop: '4px' }}>
+                    {form.motivation.length}/500 caractères
                   </div>
                 </div>
+
+
 
                 <button type="submit" disabled={loading} className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', fontSize: '14px', padding: '15px' }}>
                   {loading ? (
@@ -253,7 +225,7 @@ export default function CandidaturePage() {
                       <span style={{ width: '16px', height: '16px', border: '2px solid rgba(255,255,255,0.3)', borderTopColor: 'white', borderRadius: '50%', display: 'inline-block', animation: 'spin 0.6s linear infinite' }} />
                       Envoi en cours...
                     </span>
-                  ) : '🚀 Envoyer ma candidature'}
+                  ) : 'Envoyer ma candidature'}
                 </button>
               </form>
             </div>
@@ -261,48 +233,16 @@ export default function CandidaturePage() {
 
           {/* Sidebar */}
           <div style={{ position: 'sticky', top: '24px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            <div style={{ background: 'linear-gradient(135deg, #1a0005 0%, #2d0008 100%)', borderRadius: '12px', padding: '24px', color: 'white' }}>
+            <div style={{ background: 'linear-gradient(135deg, white 0%, #1a0005 100%)', borderRadius: '12px', padding: '24px', color: 'white' }}>
               <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: '20px', marginBottom: '8px' }}>
-                <span style={{ color: '#C8102E' }}>ACADEMY</span> 21
+              
               </div>
-              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '13px', lineHeight: 1.7, marginBottom: '20px' }}>
-                Rejoignez un réseau international d&apos;entrepreneurs présents sur 5 continents.
-              </p>
-              {[
-                { icon: '🌍', text: '75+ pays représentés' },
-                { icon: '👥', text: '1M+ participants formés' },
-                { icon: '🏆', text: 'Speakers internationaux' },
-                { icon: '📈', text: 'Réseau entrepreneurial actif' },
-              ].map(item => (
-                <div key={item.text} style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
-                  <span style={{ fontSize: '16px' }}>{item.icon}</span>
-                  <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.75)', fontFamily: 'Montserrat,sans-serif', fontWeight: 600 }}>{item.text}</span>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ background: 'white', border: '1px solid #e0e2e6', borderRadius: '8px', padding: '16px 18px' }}>
-              <h4 style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: '12px', color: '#1a1a1a', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                Après votre candidature
-              </h4>
-              {[
-                { step: '1', text: 'Email de confirmation reçu' },
-                { step: '2', text: 'Étude de votre dossier (48h)' },
-                { step: '3', text: 'Contact par email ou téléphone' },
-              ].map(item => (
-                <div key={item.step} style={{ display: 'flex', gap: '10px', marginBottom: '10px', alignItems: 'flex-start' }}>
-                  <div style={{ width: '20px', height: '20px', borderRadius: '50%', background: '#C8102E', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: '10px', flexShrink: 0 }}>
-                    {item.step}
-                  </div>
-                  <p style={{ fontSize: '12px', color: '#555', lineHeight: 1.6, margin: 0 }}>{item.text}</p>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ background: '#fff5f5', border: '1px solid rgba(200,16,46,0.15)', borderRadius: '8px', padding: '14px 18px' }}>
-              <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: '12px', color: '#C8102E', marginBottom: '6px' }}>Une question ?</div>
-              <a href="mailto:contact@academy21france.fr" style={{ fontSize: '12px', color: '#C8102E', fontFamily: 'Montserrat,sans-serif', fontWeight: 700 }}>
-                ✉️ contact@academy21france.fr
+             
+              
+                
+               <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: '12px', color: 'white', marginBottom: '6px' }}>Une question ?</div>
+              <a href="mailto:contact@academy21france.fr" style={{ fontSize: '12px', color: 'white', fontFamily: 'Montserrat,sans-serif', fontWeight: 700 }}>
+               ndjiyaaubierge@gmail.com
               </a>
             </div>
           </div>

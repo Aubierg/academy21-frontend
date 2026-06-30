@@ -117,11 +117,11 @@ export default function FormationIAPage() {
             Retour aux formations
           </Link>
 
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '16px' }}>
+         {/*<div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '16px' }}>
             <span style={{ background: '#C8102E', color: 'white', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '10px', padding: '3px 10px', borderRadius: '3px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Formation Professionnelle</span>
             <span style={{ background: '#e8f0fb', color: '#1a6fc4', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '10px', padding: '3px 10px', borderRadius: '3px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Distanciel synchrone</span>
             <span style={{ background: '#edfae5', color: '#28a745', border: '1px solid #c3e6cb', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '10px', padding: '3px 10px', borderRadius: '3px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Éligible CPF</span>
-          </div>
+          </div> */}
 
           <h1 style={{
             fontFamily: 'Montserrat,sans-serif', fontWeight: 900,
@@ -136,7 +136,7 @@ export default function FormationIAPage() {
             Intégrez de manière structurée les outils d&apos;intelligence artificielle dans votre organisation commerciale afin d&apos;optimiser vos pratiques et professionnaliser votre activité.
           </p>
 
-          {/* Infos clés — fond gris clair */}
+          {/* Infos clés — fond gris clair 
           <div style={{
             display: 'flex', flexWrap: 'wrap',
             background: '#f7f8fa', border: '1px solid #e0e2e6',
@@ -154,7 +154,7 @@ export default function FormationIAPage() {
               }}>
                 <div style={{ fontSize: '10px', color: '#aaa', textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: 'Montserrat,sans-serif', fontWeight: 600, marginBottom: '4px' }}>{info.label}</div>
                 <div style={{ color: '#1a1a1a', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '13px' }}>{info.val}</div>
-              </div>
+              </div> 
             ))}
           </div>
         </div>
@@ -255,22 +255,12 @@ export default function FormationIAPage() {
       </div>
 
       {/* CTA S'inscrire */}
-      <div style={{ background: 'linear-gradient(135deg, #1a0005 0%, #2d0008 100%)', padding: 'clamp(40px,6vw,80px) 24px', textAlign: 'center', marginTop: '48px' }}>
-        <div className="container">
-          <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: 'clamp(22px,4vw,38px)', color: 'white', marginBottom: '16px' }}>
-            Prêt à transformer votre activité avec l&apos;IA ?
-          </div>
-          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '15px', marginBottom: '32px', maxWidth: '500px', margin: '0 auto 32px' }}>
-            Rejoignez la formation et maîtrisez l&apos;intelligence artificielle appliquée au marketing de réseau.
-          </p>
-          <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap', alignItems: 'center', marginBottom: '20px' }}>
+    <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap', alignItems: 'center', marginBottom: '20px' }}>
             <Link href="/formations/ia-marketing-reseau/inscription" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: '#C8102E', color: 'white', fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: '15px', padding: '16px 36px', borderRadius: '8px', textDecoration: 'none', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
               S&apos;inscrire maintenant — 490 €
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </Link>
-          </div>
-          <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '12px' }}>🔒 Paiement sécurisé · 20h de formation · Distanciel synchrone</p>
-        </div>
+       
       </div>
 
       <style>{`

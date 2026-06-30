@@ -101,9 +101,6 @@ export default function InscriptionPage() {
                   <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: '14px', color: '#1a1a1a', marginBottom: '4px' }}>
                     {FORMATION.title}
                   </div>
-                  <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', fontSize: '12px', color: '#888' }}>
-                    <span>20 heures</span><span>Distanciel</span><span>5 modules</span>
-                  </div>
                 </div>
                 <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 900, fontSize: '22px', color: '#C8102E' }}>
                   {FORMATION.price.toLocaleString('fr-FR')} €
@@ -170,7 +167,7 @@ export default function InscriptionPage() {
             <div style={{ background: '#fff5f5', border: '1px solid rgba(200,16,46,0.15)', borderRadius: '8px', padding: '14px 18px' }}>
               <div style={{ fontFamily: 'Montserrat,sans-serif', fontWeight: 800, fontSize: '12px', color: '#C8102E', marginBottom: '6px' }}>Une question ?</div>
               <a href="mailto:contact@academy21france.fr" style={{ fontSize: '12px', color: '#C8102E', fontFamily: 'Montserrat,sans-serif', fontWeight: 700 }}>
-                ✉️ contact@academy21france.fr
+                ndjiyaaubierge@gmail.com
               </a>
             </div>
           </div>

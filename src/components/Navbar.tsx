@@ -28,11 +28,11 @@ const NAV_ITEMS = [
     label: 'Communauté',
     children: [
       { label: 'Témoignages', href: '/temoignages' },
-      { label: "Rejoindre l'Académie", href: '/rejoindre-academie' },
+      
       { label: 'Mon Programme', href: '/dashboard' },
     ],
   },
-  { label: 'Nos Universités', href: '/formations' },
+  { label: 'Nos Universités', href: '/nos-universites' },
 ];
 
 export default function Navbar() {
@@ -70,12 +70,12 @@ export default function Navbar() {
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
           <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
             {[
-              { icon: '📍', val: 'Paris, France' },
-              { icon: '✉️', val: 'contact@academy21france.fr' },
-              { icon: '📞', val: '+33 1 XX XX XX XX' },
+              { val: 'Paris, France' },
+              { val: 'ndjiyaaubierge@gmail.com' },
+              { val: '+33 6 74 89 59 69' },
             ].map(c => (
               <span key={c.val} style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#999', fontFamily: 'Montserrat,sans-serif', fontSize: '11px' }}>
-                <span>{c.icon}</span><span>{c.val}</span>
+                <span>{c.val}</span>
               </span>
             ))}
           </div>
@@ -90,7 +90,7 @@ export default function Navbar() {
               <>
                 <Link href="/login" style={{ color: '#aaa', fontSize: '11px', fontFamily: 'Montserrat,sans-serif', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Connexion</Link>
                 <span style={{ color: '#444' }}>|</span>
-                <Link href="/rejoindre-academie" style={{ color: '#C8102E', fontSize: '11px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Rejoindre l&apos;Académie</Link>
+
               </>
             )}
           </div>
@@ -201,17 +201,7 @@ export default function Navbar() {
               }}>
                 👤 {user.email.split('@')[0]}
               </Link>
-            ) : (
-              <Link href="/rejoindre-academie" style={{
-                background: '#C8102E', color: 'white',
-                fontFamily: 'Montserrat,sans-serif', fontWeight: 700,
-                fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase',
-                padding: '11px 24px', borderRadius: '4px',
-                display: 'inline-block', textDecoration: 'none',
-              }}>
-                Rejoindre l&apos;Académie
-              </Link>
-            )}
+            ) : null}
           </div>
 
           {/* BURGER MOBILE */}
@@ -293,7 +283,7 @@ export default function Navbar() {
               ) : (
                 <>
                   <Link href="/login" onClick={() => setMobileOpen(false)} style={{ display: 'block', textAlign: 'center', padding: '12px', border: '1.5px solid #e0e2e6', borderRadius: '4px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', color: '#333', textDecoration: 'none' }}>Connexion</Link>
-                  <Link href="/rejoindre-academie" onClick={() => setMobileOpen(false)} style={{ display: 'block', textAlign: 'center', padding: '12px', background: '#C8102E', borderRadius: '4px', fontFamily: 'Montserrat,sans-serif', fontWeight: 700, fontSize: '12px', textTransform: 'uppercase', color: 'white', textDecoration: 'none' }}>Rejoindre l&apos;Académie</Link>
+
                 </>
               )}
             </div>

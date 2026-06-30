@@ -25,8 +25,9 @@ function LoginForm() {
     setError('');
     setLoading(true);
     try {
-      await login(email, password);
-      router.push(redirect);
+      const loggedUser = await login(email, password);
+      const dest = redirectParam || (loggedUser?.role === 'admin' ? '/admin' : '/dashboard');
+      router.push(dest);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Identifiants incorrects');
     } finally {
