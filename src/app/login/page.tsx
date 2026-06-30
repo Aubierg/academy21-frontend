@@ -13,12 +13,15 @@ function LoginForm() {
   const { login, user, loading: authLoading } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirect = searchParams.get('redirect') || '/formations';
+  const redirectParam = searchParams.get('redirect');
   const registered = searchParams.get('registered') === '1';
 
   useEffect(() => {
-    if (!authLoading && user) router.push(redirect);
-  }, [user, authLoading, router, redirect]);
+    if (!authLoading && user) {
+      const dest = redirectParam || (user.role === 'admin' ? '/admin' : '/dashboard');
+      router.push(dest);
+    }
+  }, [user, authLoading, router, redirectParam]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
