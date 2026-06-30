@@ -60,7 +60,7 @@ export default function HomePage() {
         <div style={{ position: 'absolute', top: '20%', right: '10%', width: '200px', height: '200px', borderRadius: '50%', background: 'rgba(26,111,196,0.04)', zIndex: 0 }} />
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'flex', maxWidth: '750px', marginLeft: '-220px' }} className="hero-grid">
+          <div style={{ display: 'flex', maxWidth: '750px', marginLeft: '-110px' }} className="hero-grid">
 
             {/* Texte */}
             <div>
