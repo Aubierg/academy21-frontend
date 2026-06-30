@@ -46,7 +46,7 @@ export default function HomePage() {
       <section style={{
         backgroundImage: 'url(/png.jpg)',
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center top',
         padding: 'clamp(200px,25vw,320px) 0 clamp(150px,18vw,250px)',
         position: 'relative',
         overflow: 'hidden',
@@ -60,7 +60,7 @@ export default function HomePage() {
         <div style={{ position: 'absolute', top: '20%', right: '10%', width: '200px', height: '200px', borderRadius: '50%', background: 'rgba(26,111,196,0.04)', zIndex: 0 }} />
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(32px,5vw,80px)', alignItems: 'center' }} className="hero-grid">
+          <div style={{ display: 'flex', maxWidth: '750px', marginLeft: '-220px' }} className="hero-grid">
 
             {/* Texte */}
             <div>
